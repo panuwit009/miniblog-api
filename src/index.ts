@@ -1,11 +1,6 @@
-import express from 'express';
-import blogRoutes from './routes/blog';
+import app from './app';
 
-const app = express();
-const port = 3000;
-
-app.use(express.json());
-app.use('/api/blog', blogRoutes);
+const port = process.env.PORT;
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);

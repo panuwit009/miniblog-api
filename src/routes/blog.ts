@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  console.log('Received body:', req.body); // <-- Debug line
+  console.log('Received body:', req.body); // Debug 
   const { title, content } = req.body;
 
   const result = await pool.query(
