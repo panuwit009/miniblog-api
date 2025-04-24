@@ -12,6 +12,10 @@ router.post('/', async (req, res) => {
   console.log('Received body:', req.body); // Debug 
   const { title, content } = req.body;
 
+  if (!title || !content) {
+    return res.status(400).json({ error: 'Missing title or content' });
+  }
+
   const result = await pool.query(
     'INSERT INTO posts (title, content) VALUES ($1, $2) RETURNING *',
     [title, content]
@@ -54,7 +58,7 @@ router.delete('/:id', async (req, res) => {
       return res.status(404).json({ error: 'Post not found' });
     }
 
-    res.json({ message: 'Post deleted successfully' });
+    res.json({ message: 'Post id: ' + id + ' deleted successfully' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Server error' });
