@@ -1,6 +1,6 @@
 import express from 'express';
 import blogRoutes from './routes/blog';
-import blogApi from './apiPath';
+import blogApi from './misc';
 
 const app = express();
 
