@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  console.log('Received body:', req.body); // Debug 
+  // console.log('Received body:', req.body); // Debug 
   const { title, content } = req.body;
 
   if (!title || !content) {
