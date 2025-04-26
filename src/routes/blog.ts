@@ -28,6 +28,10 @@ router.put('/:id', async (req, res) => {
   const { title, content } = req.body;
   const { id } = req.params;
 
+  if (!title || !content) {
+    return res.status(400).json({ error: 'Missing title or content' });
+  }
+
   try {
     const result = await pool.query(
       'UPDATE posts SET title = $1, content = $2 WHERE id = $3 RETURNING *',
@@ -58,7 +62,7 @@ router.delete('/:id', async (req, res) => {
       return res.status(404).json({ error: 'Post not found' });
     }
 
-    res.json({ message: 'Post id: ' + id + ' deleted successfully' });
+    res.status(204).send();
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Server error' });
